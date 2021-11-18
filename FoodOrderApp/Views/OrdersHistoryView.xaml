@@ -1,0 +1,145 @@
+﻿<?xml version="1.0" encoding="UTF-8"?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:vm="clr-namespace:FoodOrderApp.ViewModels"
+              xmlns:pancake="clr-namespace:Xamarin.Forms.PancakeView;assembly=Xamarin.Forms.PancakeView"
+              xmlns:helpers="clr-namespace:DemoApp.Helpers"
+             xmlns:ios="clr-namespace:Xamarin.Forms.PlatformConfiguration.iOSSpecific;assembly=Xamarin.Forms.Core"
+             ios:Page.UseSafeArea="True"
+             x:Class="FoodOrderApp.Views.OrdersHistoryView"
+             BackgroundColor="{AppThemeBinding Light={StaticResource LightSecondaryBackgroundColor}, Dark={StaticResource DarkSecondaryBackgroundColor}}"
+             Visual="Material">
+    <ContentPage.BindingContext>
+        <vm:UserOrdersHistoryViewModel />
+    </ContentPage.BindingContext>
+    <ContentPage.Content>
+        <Grid>
+             <Grid.RowDefinitions>
+                <RowDefinition Height="100" />
+                <RowDefinition Height="*" />
+            </Grid.RowDefinitions>
+
+            <ImageButton Source="{FontImage FontFamily=FontAwesome,
+                Glyph={x:Static helpers:IconFont.ArrowLeft},Size=30, Color=White}"
+                Grid.Row="0" HorizontalOptions="Start" Aspect="AspectFit"
+                VerticalOptions="Start" Margin="10,30" Clicked="ImageButton_Clicked"  />
+
+            <Label Text="Burger Queen" FontSize="40" TextColor="WhiteSmoke"
+                   FontFamily="CabinSketch" HorizontalOptions="Center" VerticalOptions="Start" />
+
+            <Label x:Name="LabelName" FontSize="Subtitle" Margin="20,0" TextColor="WhiteSmoke"
+                   HorizontalOptions="Center" VerticalOptions="End" />
+
+            <pancake:PancakeView BackgroundColor="{AppThemeBinding Light={StaticResource LightInnerBackgroundColor}, Dark={StaticResource DarkInnerBackgroundColor}}"
+                                 CornerRadius="40,40,0,0"
+                                 Grid.Row="1">
+                <Grid>
+                    <!--<ActivityIndicator IsRunning="{Binding IsBusy}"
+                                       WidthRequest="50" HeightRequest="50"
+                                       Color="LimeGreen"
+                                       IsVisible="{Binding IsBusy}"
+                                       HorizontalOptions="Center"
+                                       VerticalOptions="Center" />-->
+                    <Image Source="process.gif" HorizontalOptions="Center" VerticalOptions="Center"
+                           IsVisible="{Binding IsBusy}"
+                           IsAnimationPlaying="True" />
+
+            <CollectionView ItemsSource="{Binding OrderDetails}"
+                            IsGrouped="True" Margin="25,10,25,0"
+                            VerticalScrollBarVisibility="Never">
+                <CollectionView.ItemsLayout>
+                    <LinearItemsLayout ItemSpacing="10" Orientation="Vertical"/>
+                </CollectionView.ItemsLayout>
+                <CollectionView.EmptyViewTemplate>
+                    <DataTemplate>
+                        <Label Text="No Orders Has Been Placed Yet." />
+                    </DataTemplate>
+                </CollectionView.EmptyViewTemplate>
+                <CollectionView.GroupHeaderTemplate>
+                    <DataTemplate>
+                        <Grid BackgroundColor="LightSlateGray" Padding="2">
+                            <Grid.RowDefinitions>
+                                <RowDefinition Height="Auto" />
+                                <RowDefinition Height="Auto" />
+                            </Grid.RowDefinitions>
+                            <Label Text="Order Id" HorizontalOptions="Center"
+                                   FontSize="Subtitle" TextColor="White" Grid.Row="0" />
+                            <Label Text="{Binding OrderId}" TextColor="White"
+                                   Grid.Row="1" HorizontalOptions="Center"
+                                   FontSize="Body"/>
+                        </Grid>
+                    </DataTemplate>
+                </CollectionView.GroupHeaderTemplate>
+                <CollectionView.GroupFooterTemplate>
+                    <DataTemplate>
+                        <StackLayout BackgroundColor="#eeeeee">
+                            <Label Text="{Binding TotalCost,StringFormat='Total Cost : {0:c}'}"
+                                   TextColor="{AppThemeBinding Light={StaticResource DarkSecondaryBackgroundColor}, Dark={StaticResource DarkSecondaryBackgroundColor}}"
+                                   FontAttributes="Bold" />
+                            <BoxView BackgroundColor="{AppThemeBinding Light={StaticResource LightSecondaryBackgroundColor}, Dark={StaticResource DarkSecondaryBackgroundColor}}"
+                                      HeightRequest="3" />
+                        </StackLayout>
+                    </DataTemplate>
+                </CollectionView.GroupFooterTemplate>
+                <CollectionView.ItemTemplate>
+                    <DataTemplate>
+                        <Frame Padding="10" HasShadow="False" Margin="10"
+                               BorderColor="LightSlateGray"
+                               BackgroundColor="{AppThemeBinding Light={StaticResource LightSecondaryBackgroundColor}, Dark={StaticResource DarkSecondaryBackgroundColor}}">
+                            <Grid>
+                                <Grid.RowDefinitions>
+                                    <RowDefinition Height="Auto" />
+                                    <RowDefinition Height="Auto" />
+                                    <RowDefinition Height="Auto" />
+                                    <RowDefinition Height="Auto" />
+                                </Grid.RowDefinitions>
+                                <Label Grid.Row="0">
+                                    <Label.FormattedText>
+                                        <FormattedString>
+                                            <Span Text="Order Detail Id : " />
+                                            <Span Text="{Binding OrderDetailId}" TextColor="{DynamicResource SecondaryDarkTextColor}"
+                                                   FontAttributes="Bold"/>
+                                        </FormattedString>
+                                    </Label.FormattedText>
+                                </Label>
+
+                                 <Label Grid.Row="1">
+                                    <Label.FormattedText>
+                                        <FormattedString>
+                                            <Span Text="Product Name : " />
+                                            <Span Text="{Binding ProductName}" TextColor="{DynamicResource SecondaryDarkTextColor}"
+                                                   FontAttributes="Bold"/>
+                                        </FormattedString>
+                                    </Label.FormattedText>
+                                </Label>
+
+                                <Label Grid.Row="2">
+                                    <Label.FormattedText>
+                                        <FormattedString>
+                                            <Span Text="Quantity : " />
+                                            <Span Text="{Binding Quantity}" TextColor="{DynamicResource SecondaryDarkTextColor}"
+                                                   FontAttributes="Bold" />
+                                        </FormattedString>
+                                    </Label.FormattedText>
+                                </Label>
+                                
+                                 <Label Grid.Row="3">
+                                    <Label.FormattedText>
+                                        <FormattedString>
+                                            <Span Text="Price : " />
+                                            <Span Text="{Binding Price, StringFormat='{0:c}'}" TextColor="{DynamicResource SecondaryDarkTextColor}"
+                                                   FontAttributes="Bold"/>
+                                        </FormattedString>
+                                    </Label.FormattedText>
+                                </Label>
+                            </Grid>
+                        </Frame>
+                    </DataTemplate>
+                </CollectionView.ItemTemplate>
+            </CollectionView>
+
+                </Grid>
+            </pancake:PancakeView>
+            </Grid>
+    </ContentPage.Content>
+</ContentPage>

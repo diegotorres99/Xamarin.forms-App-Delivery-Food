@@ -1,0 +1,43 @@
+<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <TargetFramework>netstandard2.0</TargetFramework>
+    <ProduceReferenceAssembly>true</ProduceReferenceAssembly>
+  </PropertyGroup>
+
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|AnyCPU'">
+    <DebugType>portable</DebugType>
+    <DebugSymbols>true</DebugSymbols>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <PackageReference Include="Xamarin.Forms" Version="4.7.0.1080" />
+    <PackageReference Include="Xamarin.Essentials" Version="1.5.3.2" />
+    <PackageReference Include="FirebaseDatabase.net" Version="4.0.4" />
+    <PackageReference Include="Xamarin.Forms.PancakeView" Version="2.0.0.691" />
+    <PackageReference Include="Xamarin.Forms.Visual.Material" Version="4.7.0.1080" />
+    <PackageReference Include="sqlite-net-pcl" Version="1.7.335" />
+    <PackageReference Include="Xamarin.JudoPay" Version="5.3.1" />
+    <PackageReference Include="Xamarin.Plugin.SharedTransitions" Version="2.2.0" />
+  </ItemGroup>
+  <ItemGroup>
+    <Folder Include="Model\" />
+    <Folder Include="Views\" />
+    <Folder Include="ViewModels\" />
+    <Folder Include="Services\" />
+    <Folder Include="Helpers\" />
+    <Folder Include="Fonts\" />
+    <Folder Include="Converters\" />
+    <Folder Include="Behaviors\" />
+    <Folder Include="Themes\" />
+    <Folder Include="Repositories\" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Remove="Fonts\materialdesignicons-webfont.ttf" />
+    <None Remove="Fonts\CabinSketch-Bold.ttf" />
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="Fonts\materialdesignicons-webfont.ttf" />
+    <EmbeddedResource Include="Fonts\CabinSketch-Bold.ttf" />
+  </ItemGroup>
+</Project>

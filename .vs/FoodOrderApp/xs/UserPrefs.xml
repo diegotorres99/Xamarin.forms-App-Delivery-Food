@@ -1,0 +1,53 @@
+﻿<Properties StartupConfiguration="{6BA6CF10-77AE-41F0-B32F-016F8E2D469B}|Default">
+  <MonoDevelop.Ide.ItemProperties.FoodOrderApp.Android PreferredExecutionTarget="Android.pixel_2_q_10_0_-_api_29" />
+  <MonoDevelop.Ide.Workbench ActiveDocument="../../SO/FoodOrderApp/FoodOrderApp/Views/ProductDetailsView.xaml">
+    <Files>
+      <File FileName="FoodOrderApp/App.xaml" Line="60" Column="42" />
+      <File FileName="FoodOrderApp/Views/ProductsView.xaml" Line="6" Column="8" />
+      <File FileName="FoodOrderApp/App.xaml.cs" Line="37" Column="41" />
+      <File FileName="FoodOrderApp/Themes/LightTheme.xaml" />
+      <File FileName="FoodOrderApp/Views/CartView.xaml" Line="38" Column="179" />
+      <File FileName="FoodOrderApp/Views/ProductDetailsView.xaml" Line="113" Column="108" />
+      <File FileName="FoodOrderApp/Views/OrdersHistoryView.xaml" Line="10" Column="154" />
+      <File FileName="FoodOrderApp/ViewModels/LoginViewModel.cs" Line="91" Column="13" />
+      <File FileName="FoodOrderApp/ViewModels/LogoutViewModel.cs" Line="1" Column="1" />
+      <File FileName="FoodOrderApp/Views/LogoutView.xaml" Line="52" Column="36" />
+      <File FileName="FoodOrderApp/Views/LoginView.xaml" Line="17" Column="37" />
+      <File FileName="FoodOrderApp/Services/UserService.cs" Line="1" Column="1" />
+      <File FileName="FoodOrderApp/Views/SettingsPage.xaml" Line="1" Column="1" />
+      <File FileName="../../SO/FoodOrderApp/FoodOrderApp/Views/ProductDetailsView.xaml" Line="70" Column="28" />
+    </Files>
+    <Pads>
+      <Pad Id="ProjectPad">
+        <State name="__root__">
+          <Node name="FoodOrderApp" expanded="True">
+            <Node name="FoodOrderApp" expanded="True">
+              <Node name="Repositories" expanded="True" />
+              <Node name="Services" expanded="True" />
+              <Node name="Themes" expanded="True" />
+              <Node name="ViewModels" expanded="True" />
+              <Node name="Views" expanded="True" />
+              <Node name="App.xaml" expanded="True" />
+            </Node>
+            <Node name="FoodOrderApp.Android" expanded="True">
+              <Node name="Resources" expanded="True">
+                <Node name="drawable" expanded="True" />
+                <Node name="raw" expanded="True">
+                  <Node name="cook.mp4" selected="True" />
+                </Node>
+              </Node>
+            </Node>
+            <Node name="FoodOrderApp.iOS" expanded="True" />
+          </Node>
+        </State>
+      </Pad>
+    </Pads>
+  </MonoDevelop.Ide.Workbench>
+  <MonoDevelop.Ide.DebuggingService.PinnedWatches />
+  <MonoDevelop.Ide.ItemProperties.FoodOrderApp.iOS PreferredExecutionTarget="MonoDevelop.IPhone.IPhoneSimulatorTarget.38021C14-5BA1-418B-A81B-E5545B523C6B" />
+  <MonoDevelop.Ide.Workspace ActiveConfiguration="Debug" />
+  <MonoDevelop.Ide.DebuggingService.Breakpoints>
+    <BreakpointStore />
+  </MonoDevelop.Ide.DebuggingService.Breakpoints>
+  <MultiItemStartupConfigurations />
+</Properties>

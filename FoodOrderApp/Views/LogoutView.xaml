@@ -1,0 +1,61 @@
+﻿<?xml version="1.0" encoding="UTF-8"?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:pancake="clr-namespace:Xamarin.Forms.PancakeView;assembly=Xamarin.Forms.PancakeView"
+             xmlns:helpers="clr-namespace:DemoApp.Helpers"
+             xmlns:ios="clr-namespace:Xamarin.Forms.PlatformConfiguration.iOSSpecific;assembly=Xamarin.Forms.Core"
+             ios:Page.UseSafeArea="True"
+             xmlns:vm="clr-namespace:FoodOrderApp.ViewModels"
+             x:Class="FoodOrderApp.Views.LogoutView"
+             BackgroundColor="{AppThemeBinding Light={StaticResource LightSecondaryBackgroundColor}, Dark={StaticResource DarkSecondaryBackgroundColor}}"
+             Visual="Material">
+    <ContentPage.BindingContext>
+        <vm:LogoutViewModel />
+    </ContentPage.BindingContext>
+    <ContentPage.Content>
+       <Grid BackgroundColor="{AppThemeBinding Light={StaticResource LightSecondaryBackgroundColor}, Dark={StaticResource DarkSecondaryBackgroundColor}}">
+           <Grid.RowDefinitions>
+               <RowDefinition Height="100" />
+               <RowDefinition Height="*" />
+           </Grid.RowDefinitions>
+
+           <ImageButton Source="{FontImage FontFamily=FontAwesome,
+                Glyph={x:Static helpers:IconFont.ArrowLeft},Size=30, Color=White}"
+                Grid.Row="0" HorizontalOptions="Start" Aspect="AspectFit"
+                VerticalOptions="Start" Margin="10,30" Clicked="ImageButton_Clicked" />
+
+            <Label Text="Burger Queen" FontSize="40" Style="{StaticResource PrimaryLabel}"
+                   FontFamily="CabinSketch" HorizontalOptions="Center" VerticalOptions="Start" />
+
+            <Label x:Name="LabelName" FontSize="Subtitle" Margin="20,0" Style="{StaticResource PrimaryLabel}"
+                   HorizontalOptions="Center" VerticalOptions="End" />
+
+           <pancake:PancakeView BackgroundColor="{AppThemeBinding Light={StaticResource LightInnerBackgroundColor}, Dark={StaticResource DarkInnerBackgroundColor}}"
+                                CornerRadius="60,60,0,0"
+                                Grid.Row="1">
+               <StackLayout HorizontalOptions="Center" VerticalOptions="Center">
+                   <StackLayout IsVisible="{Binding IsCartExists}">
+                       <Label Text="Cart, is not empty!" TextColor="{DynamicResource ContextTextColor}" />
+                       <Label Text="{Binding UserCartItemsCount, StringFormat='Your Cart Contains {0} items'}"
+                              TextColor="{DynamicResource ContextTextColor}"/>
+                   </StackLayout>
+
+                   <StackLayout>
+                       <Label Text="Are you sure you wanted to logout ?" TextColor="{DynamicResource ContextTextColor}" />
+                       <StackLayout Orientation="Horizontal" Spacing="10">
+                           <Button Text="Yes, Logout" HorizontalOptions="Center"
+                                   BackgroundColor="{AppThemeBinding Light={StaticResource LightInfoButtonColor}, Dark={StaticResource DarkInfoButtonColor}}"
+                                   CornerRadius="20"
+                                   Command="{Binding LogoutCommand}" />
+
+                           <Button Text="No, Go To Cart" HorizontalOptions="Center"
+                                    CornerRadius="20"
+                                   BackgroundColor="{AppThemeBinding Light={StaticResource LightInfoButtonColor}, Dark={StaticResource DarkInfoButtonColor}}"
+                                   Command="{Binding GotoCartCommand}" />
+                       </StackLayout>
+                   </StackLayout>
+               </StackLayout>
+           </pancake:PancakeView>
+       </Grid>
+    </ContentPage.Content>
+</ContentPage>

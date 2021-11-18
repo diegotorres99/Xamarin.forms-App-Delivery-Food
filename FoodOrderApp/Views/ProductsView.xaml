@@ -1,0 +1,183 @@
+﻿<?xml version="1.0" encoding="UTF-8"?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:ios="clr-namespace:Xamarin.Forms.PlatformConfiguration.iOSSpecific;assembly=Xamarin.Forms.Core"
+             ios:Page.UseSafeArea="True"
+             xmlns:st="clr-namespace:Plugin.SharedTransitions;assembly=Plugin.SharedTransitions"
+             xmlns:pancake="clr-namespace:Xamarin.Forms.PancakeView;assembly=Xamarin.Forms.PancakeView"
+             xmlns:helpers="clr-namespace:DemoApp.Helpers"
+             xmlns:vm="clr-namespace:FoodOrderApp.ViewModels"
+             x:Class="FoodOrderApp.Views.ProductsView"
+             BackgroundColor="{AppThemeBinding Light={StaticResource LightPageBackgroundColor}, Dark={StaticResource DarkPageBackgroundColor}}">
+    <ContentPage.Resources>
+         <Style TargetType="Grid">
+            <Setter Property="VisualStateManager.VisualStateGroups">
+                <VisualStateGroupList>
+                    <VisualStateGroup x:Name="CommonStates">
+                        <VisualState x:Name="Normal" />
+                        <VisualState x:Name="Selected">
+                            <VisualState.Setters>
+                                <Setter Property="BackgroundColor"
+                                        Value="{AppThemeBinding Light={StaticResource LightPageBackgroundColor}, Dark={StaticResource DarkPageBackgroundColor}}" />
+                            </VisualState.Setters>
+                        </VisualState>
+                    </VisualStateGroup>
+                </VisualStateGroupList>
+            </Setter>
+        </Style>
+    </ContentPage.Resources>
+    <ContentPage.BindingContext>
+        <vm:ProductsViewModel />
+    </ContentPage.BindingContext>
+    <ContentPage.Content>
+        <Grid Margin="20,0,0,0">
+            <Grid.RowDefinitions>
+                <RowDefinition Height="Auto" />
+                <RowDefinition Height="Auto" />
+                <RowDefinition Height="Auto" />
+                <RowDefinition Height="Auto" />
+                <RowDefinition Height="*" />
+            </Grid.RowDefinitions>
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="*" />
+            </Grid.ColumnDefinitions>
+
+            <Grid Grid.Row="0">
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="Auto" />
+                    <RowDefinition Height="Auto" />
+                </Grid.RowDefinitions>
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="*" />
+                    <ColumnDefinition Width="Auto" />
+                    <ColumnDefinition Width="Auto" />
+                    <ColumnDefinition Width="Auto" />
+                </Grid.ColumnDefinitions>
+
+                <Label Text="Welcome " Grid.Row="0" Grid.Column="0"
+                       Style="{StaticResource SecondaryLabel}" />
+                <Label Text="{Binding UserName}" Grid.Row="1" Grid.Column="0" FontSize="20"
+                       FontAttributes="Bold" Style="{StaticResource PrimaryLabel}" />
+
+                <ImageButton Grid.Row="0" Grid.Column="1" Grid.RowSpan="2"
+                             Source="{FontImage FontFamily=FontAwesome,
+                    Glyph={x:Static helpers:IconFont.ViewList}, Size=40, Color=LightGray}"
+                             Margin="0,0,10,0" HorizontalOptions="End"
+                             Command="{Binding ViewOrdersHistoryCommand}"/>
+
+                <Label Text="{Binding UserCartItemsCount}" FontSize="Subtitle"
+                       Grid.Row="0" Grid.Column="2" Grid.RowSpan="2"
+                       TextColor="{DynamicResource SecondaryTextColor}"
+                       HorizontalTextAlignment="End" VerticalTextAlignment="Start" />
+
+                <ImageButton Grid.Row="0" Grid.Column="2" Grid.RowSpan="2"
+                             Source="{FontImage FontFamily=FontAwesome,
+                    Glyph={x:Static helpers:IconFont.Shopping}, Size=40, Color=LightGreen}"
+                             Margin="0,0,10,0" HorizontalOptions="End"
+                             Command="{Binding ViewCartCommand}" />
+
+                <ImageButton Grid.Row="0" Grid.Column="3" Grid.RowSpan="2"
+                             Source="{FontImage FontFamily=FontAwesome,
+                    Glyph={x:Static helpers:IconFont.Logout}, Size=40, Color=IndianRed}"
+                             Margin="0,0,10,0" HorizontalOptions="End"
+                             Command="{Binding LogoutCommand}" />
+
+            </Grid>
+
+            <Grid Grid.Row="1" Grid.Column="0">
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="*" />
+                    <ColumnDefinition Width="Auto" />
+                </Grid.ColumnDefinitions>
+
+                <SearchBar Grid.Column="0" Placeholder="Search Food"
+                           Text="{Binding SearchText}"
+                           PlaceholderColor="{AppThemeBinding Light={StaticResource LightSecondaryTextColor}, Dark={StaticResource DarkSecondaryTextColor}}"
+                           TextColor="{AppThemeBinding Light={StaticResource LightPrimaryTextColor}, Dark={StaticResource DarkPrimaryTextColor}}"
+                           BackgroundColor="Transparent" HorizontalOptions="Fill" />
+
+                <ImageButton Grid.Column="1" Source="{FontImage FontFamily=FontAwesome,
+                    Glyph={x:Static helpers:IconFont.SearchWeb}, Size=40, Color=Lavender}"
+                             Margin="0,0,10,0" HorizontalOptions="End"
+                             Command="{Binding SearchViewCommand}"/>
+            </Grid>
+
+            <CollectionView ItemsSource="{Binding Categories}"
+                            Margin="0,20"
+                            HeightRequest="125" VerticalOptions="FillAndExpand"
+                            HorizontalScrollBarVisibility="Never"
+                            ItemsLayout="HorizontalList"
+                            SelectionChanged="CollectionView_SelectionChanged"
+                            SelectionMode="Single"
+                            Grid.Row="2">
+                <CollectionView.ItemTemplate>
+                    <DataTemplate>
+                        <Grid Padding="0,0,15,0">
+                           
+                            <Grid.RowDefinitions>
+                                <RowDefinition Height="Auto" />
+                                <RowDefinition Height="Auto" />
+                            </Grid.RowDefinitions>
+                            <Frame HeightRequest="50" HasShadow="False"
+                                   BackgroundColor="{DynamicResource DefaultPrimaryColor}"
+                                   CornerRadius="10">
+                                <Image Source="{Binding ImageUrl}"
+                                       Grid.Row="0"/>
+                            </Frame>
+                            <Label Text="{Binding CategoryName}"
+                                   HorizontalTextAlignment="Center"
+                                   Style="{StaticResource SecondaryLabel}" Grid.Row="1"/>
+                        </Grid>
+                    </DataTemplate>
+                </CollectionView.ItemTemplate>
+            </CollectionView>
+
+            <Label Grid.Row="3" Text="Latest Items" Style="{StaticResource PrimaryLabelHeader}" />
+            <CollectionView ItemsSource="{Binding LatestItems}"
+                            Margin="0,20,10,0" VerticalOptions="Start"
+                            VerticalScrollBarVisibility="Never"
+                            SelectionMode="Single"
+                            SelectionChanged="CV_SelectionChanged"
+                            Grid.Row="4">
+                <CollectionView.ItemTemplate>
+                    <DataTemplate>
+                        <StackLayout Margin="0,15">
+                            <Grid>
+                                <Grid.RowDefinitions>
+                                    <RowDefinition Height="Auto" />
+                                    <RowDefinition Height="Auto" />
+                                    <RowDefinition Height="Auto" />
+                                </Grid.RowDefinitions>
+
+                                <pancake:PancakeView Grid.Row="0" CornerRadius="20" Margin="0,0,10,0">
+                                    <Image Source="{Binding ImageUrl}" HeightRequest="220" Aspect="Fill"
+                                          />
+                                </pancake:PancakeView>
+
+                                <Frame Grid.Row="1" Margin="20,-80,20,70" BackgroundColor="{DynamicResource DefaultPrimaryColor}" CornerRadius="15"
+                                       HorizontalOptions="End">
+                                    <Label Text="{Binding Price, StringFormat='{0:c}'}" FontSize="Medium"
+                                           FontAttributes="Bold" Style="{StaticResource PrimaryLabel}" HeightRequest="10" />
+                                </Frame>
+                                <Label Grid.Row="1" Text="{Binding Name}" 
+                                       VerticalTextAlignment="Center" Style="{StaticResource PrimaryLabelSubHeader}"/>
+                                <Image Grid.Row="2" Source="Star" HorizontalOptions="Start" WidthRequest="20" />
+                                <Label Grid.Row="2" Margin="30,0,0,0" FontSize="15" VerticalOptions="Center">
+                                    <Label.FormattedText>
+                                        <FormattedString>
+                                            <Span Text="{Binding Rating}" FontAttributes="Bold"
+                                                  TextColor="{AppThemeBinding Light={StaticResource LightContextTextColor}, Dark={StaticResource DarkContentTextColor}}"/>
+                                            <Span Text="{Binding Description,StringFormat=' {0}'}"
+                                                  TextColor="{AppThemeBinding Light={StaticResource LightContextTextColor}, Dark={StaticResource DarkContentTextColor}}" />
+                                        </FormattedString>
+                                    </Label.FormattedText>
+                                </Label>
+                            </Grid>
+                        </StackLayout>
+                    </DataTemplate>
+                </CollectionView.ItemTemplate>
+            </CollectionView>
+
+        </Grid>
+    </ContentPage.Content>
+</ContentPage>

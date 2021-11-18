@@ -1,0 +1,41 @@
+﻿<?xml version="1.0" encoding="UTF-8"?>
+<ResourceDictionary xmlns="http://xamarin.com/schemas/2014/forms"
+                    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+                    x:Class="FoodOrderApp.Themes.LightTheme">
+   <!--<Color x:Key="MainPageBackground">WhiteSmoke</Color>
+   <Color x:Key="DarkPrimaryColor">#1976D2;</Color>
+   <Color x:Key="DefaultPrimaryColor">#8BC34A;</Color>
+   <Color x:Key="LightPrimaryColor">#BBDEFB</Color>
+   <Color x:Key="AccentColor">#CDDC39;</Color>
+   <Color x:Key="PrimaryTextColor">#212121;</Color>
+   <Color x:Key="SecondaryTextColor">#757575;</Color>
+     <Color x:Key="OrdersHistoryButtonColor">LightGray</Color>
+   <Color x:Key="UserCartButtonColor">#CFD8DC;</Color>
+   <Color x:Key="SearchButtonColor">#BDBDBD;</Color>
+   <Color x:Key="DividerColor">#BDBDBD;</Color>-->
+
+
+    <Color x:Key="MainPageBackground">#f1f1f3</Color>
+    <Color x:Key="SecondaryBackground">#03a9f4</Color>
+    <Color x:Key="InnerBackground">#f1f1f3</Color>
+    <Color x:Key="CounterBackground">LightGray</Color>
+    <Color x:Key="PrimaryTextColor">Black</Color>
+    <Color x:Key="SecondaryTextColor">Gray</Color>
+    <Color x:Key="ContextTextColor">Black</Color>
+    <Color x:Key="FooterTextColor">#E84275</Color>
+    <Color x:Key="DefaultButtonColor">#0AE596</Color>
+    <Color x:Key="InfoButtonColor">#E84275</Color>
+    <Color x:Key="UpDownButtonColor">#0AE596</Color>
+
+    <Color x:Key="TitleTextColor">#E84275</Color>
+    <Color x:Key="ContentTextColor">#0AE596</Color>
+</ResourceDictionary>
+
+<!--.dark-primary-color    { background: #689F38; }
+.default-primary-color { background: #8BC34A; }
+.light-primary-color   { background: #DCEDC8; }
+.text-primary-color    { color: #212121; }
+.accent-color          { background: #CDDC39; }
+.primary-text-color    { color: #212121; }
+.secondary-text-color  { color: #757575; }
+.divider-color         { border-color: #BDBDBD; }-->
